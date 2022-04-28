@@ -16,9 +16,12 @@ const getData = () => {
     const parsedData = JSON.parse(data);
     bookList = parsedData;
     bookContainer.innerHTML = parsedData.map((book) => `
-                <h3>${book.titleInput}</h3>
-                <p>${book.authorInput}</p>
+                <div class="book-wrap">
+                <div class="bookInfo"><p>"${book.titleInput}"</p>
+                <p>by ${book.authorInput}</p></div>
+                <div class="button">
                 <button type="button"  onclick='deleteBook(${book.id})'>Remove</button>
+                </div></div>
             <hr>
             `).join('');
   }

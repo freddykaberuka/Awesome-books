@@ -1,0 +1,22 @@
+body {
+    text-align: center;
+    font-family: Arial;
+}
+.books {
+    border: 2px solid black;
+    margin: 100px;
+}
+.book-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+.bookInfo {
+    display: flex;
+}
+.button {
+    margin: 20px;
+}
+#title,
+#author {
+    padding: 4px;
+}
