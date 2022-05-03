@@ -1,6 +1,13 @@
 const bookForm = document.querySelector('#book_form');
 const bookContainer = document.querySelector('.books');
 
+class BookDetails {
+  constructor(titleInput, authorInput, id) {
+    this.titleInput = titleInput;
+    this.authorInput = authorInput;
+    this.id = id;
+  }
+}
 let bookList = [];
 // GET BOOKS FROM LOCAL STORAGE
 const getData = () => {
@@ -9,9 +16,12 @@ const getData = () => {
     const parsedData = JSON.parse(data);
     bookList = parsedData;
     bookContainer.innerHTML = parsedData.map((book) => `
-                <h3>${book.titleInput}</h3>
-                <p>${book.authorInput}</p>
+                <div class="book-wrap">
+                <div class="bookInfo"><p>"${book.titleInput}"</p>
+                <p>by ${book.authorInput}</p></div>
+                <div class="button">
                 <button type="button"  onclick='deleteBook(${book.id})'>Remove</button>
+                </div></div>
             <hr>
             `).join('');
   }
@@ -22,7 +32,8 @@ bookForm.addEventListener('submit', (e) => {
   const titleInput = document.getElementById('title').value;
   const authorInput = document.getElementById('author').value;
   const id = Math.floor(Math.random() * 1000);
-  const book = { id, titleInput, authorInput };
+  const book = new BookDetails(titleInput, authorInput, id);
+
   bookList.push(book);
   // console.log(bookList);
   localStorage.setItem('books', JSON.stringify(bookList));
